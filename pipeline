@@ -5,6 +5,15 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'This is a Build Stage'
+                
+                mavenJob('Maven_DSL_Job_2') {
+                    description('Maven Job')
+                    label('New Node')
+                    scm {
+                        git("https://github.com/sgadallahgit/Testing_Maven.git", '*/master')
+                    }
+                    goals('clean install')
+                }
             }
         }
         stage('Test') {
